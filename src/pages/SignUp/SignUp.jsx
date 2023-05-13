@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import loginImage from "../../assets/images/login/login.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import SocialLogin from "../../sharedpages/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext)
-  
+const navigate=useNavigate()  
   
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ const SignUp = () => {
       .then(result => {
         const signUpUser = result.user;
         console.log(signUpUser);
+        navigate('/')
       })
       .catch(error => {
       console.error(error.message)
@@ -61,7 +63,7 @@ const SignUp = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   name="password"
                   placeholder="password"
                   className="input input-bordered"
@@ -83,6 +85,7 @@ const SignUp = () => {
               </Link>
             </p>
           </div>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>

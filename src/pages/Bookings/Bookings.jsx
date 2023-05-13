@@ -1,18 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import BookingTableRow from "./BookingTableRow";
+import { useNavigate } from "react-router-dom";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
-  console.log(bookings);
+  const navigate=useNavigate()
 
   const { user } = useContext(AuthContext);
   const url = `http://localhost:5000/getbookings?email=${user?.email}`;
   // console.log(url);
   useEffect(() => {
-    fetch(url)
+    fetch(url, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("car-access-token")}`,
+      },
+    })
       .then((res) => res.json())
-      .then((data) => setBookings(data));
+      .then((data) => {
+        if (!data.error) {
+          setBookings(data);
+        }
+        else {
+          navigate('/')
+        }
+      });
   }, []);
 
   //delete event
@@ -51,7 +64,7 @@ const Bookings = () => {
           const updating = bookings.find((booking) => booking._id === id);
           updating.status = "confirm";
           const newBookings = [updating, ...remaining];
-          setBookings(newBookings)
+          setBookings(newBookings);
         }
       });
   };

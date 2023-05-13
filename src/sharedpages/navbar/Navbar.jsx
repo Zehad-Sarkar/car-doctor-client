@@ -25,7 +25,7 @@ const Navbar = () => {
       {user?.email ? (
         <>
           <li>
-            <Link to='/bookings'>My Booking</Link>
+            <Link to="/bookings">My Booking</Link>
           </li>
           <li>
             <button onClick={handleSignout}>logout</button>
