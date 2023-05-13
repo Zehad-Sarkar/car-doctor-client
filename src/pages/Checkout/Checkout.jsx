@@ -27,7 +27,7 @@ const Checkout = () => {
       price: price,
     };
     // console.log(booking);
-    fetch("http://localhost:5000/addbookings", {
+    fetch("https://car-doctor-server-liard.vercel.app/addbookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -42,7 +42,6 @@ const Checkout = () => {
         }
       });
   };
-
 
   return (
     <div>

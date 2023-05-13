@@ -5,7 +5,7 @@ import { FaCalendarAlt, FaLocationArrow, FaPhoneSquare } from "react-icons/fa";
 const Services = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://car-doctor-server-liard.vercel.app/services")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
@@ -20,7 +20,7 @@ const Services = () => {
           believable.
         </p>
       </div>
-      
+
       {/* services card map */}
       <div className="grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (

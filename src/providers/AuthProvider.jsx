@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
         const tokenUser = {
           email: currentUser.email,
         };
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://car-doctor-server-liard.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -59,9 +59,8 @@ const AuthProvider = ({ children }) => {
             //second best store jwt token
             localStorage.setItem("car-access-token", data.token);
           });
-      }
-      else {
-          localStorage.removeItem("car-access-token");
+      } else {
+        localStorage.removeItem("car-access-token");
       }
     });
     return () => {

@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const { user } = useContext(AuthContext);
-  const url = `http://localhost:5000/getbookings?email=${user?.email}`;
+  const url = `https://car-doctor-server-liard.vercel.app/getbookings?email=${user?.email}`;
   // console.log(url);
   useEffect(() => {
     fetch(url, {
@@ -21,9 +21,8 @@ const Bookings = () => {
       .then((data) => {
         if (!data.error) {
           setBookings(data);
-        }
-        else {
-          navigate('/')
+        } else {
+          navigate("/");
         }
       });
   }, []);
@@ -32,7 +31,7 @@ const Bookings = () => {
   const handleDelete = (id) => {
     const procced = confirm("are you sure delete?");
     if (procced) {
-      fetch(`http://localhost:5000/deleteBookings/${id}`, {
+      fetch(`https://car-doctor-server-liard.vercel.app/deleteBookings/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -49,7 +48,7 @@ const Bookings = () => {
 
   //Confirm event
   const handleBookingConfirm = (id) => {
-    fetch(`http://localhost:5000/updateBooking/${id}`, {
+    fetch(`https://car-doctor-server-liard.vercel.app/updateBooking/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
