@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log("jwt token response", data);
+            // console.log("jwt token response", data);
             //second best store jwt token
             localStorage.setItem("car-access-token", data.token);
           });
